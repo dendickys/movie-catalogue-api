@@ -1,4 +1,4 @@
-package com.dendickys.moviecatalogueapi.ui.main;
+package com.dendickys.moviecatalogueapi.adapter;
 
 import android.content.Context;
 
@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.dendickys.moviecatalogueapi.R;
+import com.dendickys.moviecatalogueapi.ui.main.PlaceholderFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

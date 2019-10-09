@@ -1,4 +1,4 @@
-package com.dendickys.moviecatalogueapi.ui.main;
+package com.dendickys.moviecatalogueapi.viewmodel;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
