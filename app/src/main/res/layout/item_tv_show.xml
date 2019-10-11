@@ -15,7 +15,7 @@
         android:scaleType="fitXY" />
 
     <TextView
-        android:id="@+id/tv_name_tvshow"
+        android:id="@+id/tv_title_tvshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -28,10 +28,10 @@
         tools:text="@string/tvshow_name" />
 
     <TextView
-        android:id="@+id/tv_year_tvshow"
+        android:id="@+id/tv_release_date_tvshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name_tvshow"
+        android:layout_below="@id/tv_title_tvshow"
         android:layout_marginStart="24dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
@@ -42,23 +42,10 @@
         tools:text="@string/_year" />
 
     <TextView
-        android:id="@+id/tv_genre_tvshow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_year_tvshow"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_toEndOf="@id/img_poster_tvshow"
-        android:textColor="@color/colorTextSecondary"
-        android:textSize="12sp"
-        tools:text="@string/_genre" />
-
-    <TextView
         android:id="@+id/tv_overview_tvshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_genre_tvshow"
+        android:layout_below="@id/tv_release_date_tvshow"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"

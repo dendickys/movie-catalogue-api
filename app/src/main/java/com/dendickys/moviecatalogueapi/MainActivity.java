@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.dendickys.moviecatalogueapi.adapter.MoviesAdapter;
 import com.dendickys.moviecatalogueapi.adapter.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,5 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(v, "tada", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         });
+
+
     }
 }

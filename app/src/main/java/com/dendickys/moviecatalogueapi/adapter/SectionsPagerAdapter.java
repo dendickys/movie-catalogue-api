@@ -1,6 +1,7 @@
 package com.dendickys.moviecatalogueapi.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.dendickys.moviecatalogueapi.R;
-import com.dendickys.moviecatalogueapi.ui.main.PlaceholderFragment;
+import com.dendickys.moviecatalogueapi.ui.main.MoviesFragment;
+import com.dendickys.moviecatalogueapi.ui.main.TvShowFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -26,9 +28,20 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        Fragment fragment = null;
+
+        if (position == 0) {
+            fragment = new MoviesFragment();
+        } else if (position == 1) {
+            fragment = new TvShowFragment();
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        assert fragment != null;
+        fragment.setArguments(bundle);
+
+        return fragment;
     }
 
     @Nullable
@@ -39,7 +52,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 2;
+        return TAB_TITLES.length;
     }
 }

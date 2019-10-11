@@ -4,50 +4,50 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class TvShow implements Parcelable {
-    private int poster;
-    private String name;
-    private String year;
-    private String genre;
-    private String description;
+    private int id;
+    private int poster_path;
+    private String title;
+    private String release_date;
+    private String overview;
 
-    public int getPoster() {
-        return poster;
+    public int getId() {
+        return id;
     }
 
-    public void setPoster(int poster) {
-        this.poster = poster;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getPoster_path() {
+        return poster_path;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPoster_path(int poster_path) {
+        this.poster_path = poster_path;
     }
 
-    public String getYear() {
-        return year;
+    public String getTitle() {
+        return title;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
-    public String getDescription() {
-        return description;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
     @Override
@@ -57,25 +57,25 @@ public class TvShow implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.poster);
-        dest.writeString(this.name);
-        dest.writeString(this.year);
-        dest.writeString(this.genre);
-        dest.writeString(this.description);
+        dest.writeInt(this.id);
+        dest.writeInt(this.poster_path);
+        dest.writeString(this.title);
+        dest.writeString(this.release_date);
+        dest.writeString(this.overview);
     }
 
     public TvShow() {
     }
 
     protected TvShow(Parcel in) {
-        this.poster = in.readInt();
-        this.name = in.readString();
-        this.year = in.readString();
-        this.genre = in.readString();
-        this.description = in.readString();
+        this.id = in.readInt();
+        this.poster_path = in.readInt();
+        this.title = in.readString();
+        this.release_date = in.readString();
+        this.overview = in.readString();
     }
 
-    public static final Parcelable.Creator<TvShow> CREATOR = new Parcelable.Creator<TvShow>() {
+    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
         @Override
         public TvShow createFromParcel(Parcel source) {
             return new TvShow(source);
