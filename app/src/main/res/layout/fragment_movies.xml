@@ -5,15 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MoviesFragment">
 
-    <!--<androidx.recyclerview.widget.RecyclerView
+    <ProgressBar
+        android:id="@+id/progressBar_movies"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        " />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_movies"/>-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Movies Fragment"
-        android:gravity="center"/>
+        tools:listitem="@layout/item_movies" />
 
 </RelativeLayout>

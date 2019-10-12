@@ -33,7 +33,7 @@ public class MoviesViewModel extends ViewModel {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
                     String result = new String(responseBody);
-                    JSONObject responseObject = new JSONObject();
+                    JSONObject responseObject = new JSONObject(result);
                     JSONArray list = responseObject.getJSONArray("results");
 
                     for (int i = 0; i < list.length(); i++) {
@@ -43,6 +43,7 @@ public class MoviesViewModel extends ViewModel {
                         movieItem.setTitle(movie.getString("title"));
                         movieItem.setRelease_date(movie.getString("release_date"));
                         movieItem.setOverview(movie.getString("overview"));
+                        movieItem.setPoster_path(movie.getString("poster_path"));
                         listItems.add(movieItem);
                     }
                     listMovies.postValue(listItems);
