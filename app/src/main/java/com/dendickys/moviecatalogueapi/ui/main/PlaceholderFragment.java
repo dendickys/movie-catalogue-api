@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dendickys.moviecatalogueapi.R;
-import com.dendickys.moviecatalogueapi.viewmodel.PageViewModel;
+import com.dendickys.moviecatalogueapi.viewmodels.PageViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

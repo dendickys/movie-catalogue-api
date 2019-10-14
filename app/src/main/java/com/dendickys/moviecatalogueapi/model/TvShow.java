@@ -3,12 +3,27 @@ package com.dendickys.moviecatalogueapi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TvShow implements Parcelable {
+    @SerializedName("id")
     private int id;
-    private int poster_path;
+    @SerializedName("poster_path")
+    private String poster_path;
+    @SerializedName("name")
     private String title;
+    @SerializedName("first_air_date")
     private String release_date;
+    @SerializedName("overview")
     private String overview;
+
+    public TvShow(int id, String poster_path, String title, String release_date, String overview) {
+        this.id = id;
+        this.poster_path = poster_path;
+        this.title = title;
+        this.release_date = release_date;
+        this.overview = overview;
+    }
 
     public int getId() {
         return id;
@@ -18,11 +33,11 @@ public class TvShow implements Parcelable {
         this.id = id;
     }
 
-    public int getPoster_path() {
+    public String getPoster_path() {
         return poster_path;
     }
 
-    public void setPoster_path(int poster_path) {
+    public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
     }
 
@@ -58,7 +73,7 @@ public class TvShow implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeInt(this.poster_path);
+        dest.writeString(this.poster_path);
         dest.writeString(this.title);
         dest.writeString(this.release_date);
         dest.writeString(this.overview);
@@ -69,7 +84,7 @@ public class TvShow implements Parcelable {
 
     protected TvShow(Parcel in) {
         this.id = in.readInt();
-        this.poster_path = in.readInt();
+        this.poster_path = in.readString();
         this.title = in.readString();
         this.release_date = in.readString();
         this.overview = in.readString();

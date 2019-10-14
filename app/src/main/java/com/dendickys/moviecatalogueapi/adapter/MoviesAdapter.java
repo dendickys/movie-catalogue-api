@@ -1,5 +1,6 @@
 package com.dendickys.moviecatalogueapi.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.dendickys.moviecatalogueapi.DetailMoviesActivity;
 import com.dendickys.moviecatalogueapi.R;
 import com.dendickys.moviecatalogueapi.model.Movies;
 
@@ -18,12 +20,10 @@ import java.util.ArrayList;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
 
-    private ArrayList<Movies> listMovies = new ArrayList<>();
+    private ArrayList<Movies> listMovies;
 
-    public void setListMovies(ArrayList<Movies> items) {
-        listMovies.clear();
-        listMovies.addAll(items);
-        notifyDataSetChanged();
+    public MoviesAdapter(ArrayList<Movies> listMovies) {
+        this.listMovies = listMovies;
     }
 
     @NonNull
@@ -47,13 +47,23 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         private ImageView posterMovie;
         private TextView titleMovie, releaseDataMovie, overviewMovie;
 
-        public MoviesViewHolder(@NonNull View itemView) {
+        public MoviesViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             posterMovie = itemView.findViewById(R.id.img_poster_movie);
             titleMovie = itemView.findViewById(R.id.tv_title_movie);
             releaseDataMovie = itemView.findViewById(R.id.tv_release_date_movie);
             overviewMovie = itemView.findViewById(R.id.tv_overview_movie);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Intent intent = new Intent(itemView.getContext(), DetailMoviesActivity.class);
+                    intent.putExtra(DetailMoviesActivity.EXTRA_MOVIE, listMovies.get(position));
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
 
         void bind(Movies movieItems) {

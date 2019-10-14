@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,15 +16,17 @@ import com.dendickys.moviecatalogueapi.R;
 import com.dendickys.moviecatalogueapi.model.TvShow;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder> {
 
-    private ArrayList<TvShow> listTvShow = new ArrayList<>();
+    private List<TvShow> listTvShow;
 
-    public void setListTvShow(ArrayList<TvShow> items) {
-        listTvShow.clear();
+    public TvShowAdapter(List<TvShow> listTvShow) {
+        this.listTvShow = listTvShow;
+        /*listTvShow.clear();
         listTvShow.addAll(items);
-        notifyDataSetChanged();
+        notifyDataSetChanged();*/
     }
 
     @NonNull

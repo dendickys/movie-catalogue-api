@@ -5,16 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.TvShowFragment">
 
-    <!--<androidx.recyclerview.widget.RecyclerView
+    <ProgressBar
+        android:id="@+id/progressBar_tv_show"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tv_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_tv_show" />-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Tv Show Fragment"
-        android:gravity="center"/>
+        tools:listitem="@layout/item_tv_show" />
 
 </RelativeLayout>

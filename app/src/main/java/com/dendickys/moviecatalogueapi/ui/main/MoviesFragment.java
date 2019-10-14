@@ -18,23 +18,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dendickys.moviecatalogueapi.R;
 import com.dendickys.moviecatalogueapi.adapter.MoviesAdapter;
 import com.dendickys.moviecatalogueapi.model.Movies;
-import com.dendickys.moviecatalogueapi.viewmodel.MoviesViewModel;
+import com.dendickys.moviecatalogueapi.viewmodels.MoviesViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MoviesFragment extends Fragment {
 
+    private RecyclerView recyclerView;
     private MoviesAdapter moviesAdapter;
     private ProgressBar progressBar;
-    private MoviesViewModel moviesViewModel;
 
     public MoviesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,21 +49,20 @@ public class MoviesFragment extends Fragment {
 
         progressBar = view.findViewById(R.id.progressBar_movies);
 
-        RecyclerView recyclerView = view.findViewById(R.id.rv_movies);
+        recyclerView = view.findViewById(R.id.rv_movies);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        moviesAdapter = new MoviesAdapter();
-        moviesAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(moviesAdapter);
 
-        moviesViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
-        moviesViewModel.setMovies();
+        MoviesViewModel moviesViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
         showLoading(true);
 
-        moviesViewModel.getMovies().observe(this, new Observer<ArrayList<Movies>>() {
+        moviesViewModel.getAllMovies().observe(this, new Observer<ArrayList<Movies>>() {
             @Override
             public void onChanged(ArrayList<Movies> movies) {
                 if (movies != null) {
-                    moviesAdapter.setListMovies(movies);
+                    moviesAdapter = new MoviesAdapter(movies);
+                    moviesAdapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(moviesAdapter);
                     showLoading(false);
                 }
             }

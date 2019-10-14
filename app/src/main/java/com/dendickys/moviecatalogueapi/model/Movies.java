@@ -3,12 +3,27 @@ package com.dendickys.moviecatalogueapi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Movies implements Parcelable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("poster_path")
     private String poster_path;
+    @SerializedName("title")
     private String title;
+    @SerializedName("release_date")
     private String release_date;
+    @SerializedName("overview")
     private String overview;
+
+    public Movies(int id, String poster_path, String title, String release_date, String overview) {
+        this.id = id;
+        this.poster_path = poster_path;
+        this.title = title;
+        this.release_date = release_date;
+        this.overview = overview;
+    }
 
     public int getId() {
         return id;
