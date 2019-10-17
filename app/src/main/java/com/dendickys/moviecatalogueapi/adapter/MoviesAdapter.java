@@ -43,11 +43,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         return listMovies.size();
     }
 
-    public class MoviesViewHolder extends RecyclerView.ViewHolder {
+    class MoviesViewHolder extends RecyclerView.ViewHolder {
         private ImageView posterMovie;
         private TextView titleMovie, releaseDataMovie, overviewMovie;
 
-        public MoviesViewHolder(@NonNull final View itemView) {
+        MoviesViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             posterMovie = itemView.findViewById(R.id.img_poster_movie);
@@ -60,7 +60,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Intent intent = new Intent(itemView.getContext(), DetailMoviesActivity.class);
-                    intent.putExtra(DetailMoviesActivity.EXTRA_MOVIE, listMovies.get(position));
+                    intent.putExtra(DetailMoviesActivity.MOVIE_ID, listMovies.get(position));
                     itemView.getContext().startActivity(intent);
                 }
             });

@@ -6,9 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.dendickys.moviecatalogueapi.interfaces.RetrofitServices;
-import com.dendickys.moviecatalogueapi.model.GetTvShow;
-import com.dendickys.moviecatalogueapi.model.Movies;
+import com.dendickys.moviecatalogueapi.interfaces.RetrofitApi;
+import com.dendickys.moviecatalogueapi.model.ListTvShow;
 import com.dendickys.moviecatalogueapi.model.TvShow;
 
 import java.util.ArrayList;
@@ -33,22 +32,22 @@ public class TvShowViewModel extends ViewModel {
 
     private void loadTvShow() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitServices.BASE_URL)
+                .baseUrl(RetrofitApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        RetrofitServices api = retrofit.create(RetrofitServices.class);
-        Call<GetTvShow> call = api.getAllTvShow();
+        RetrofitApi api = retrofit.create(RetrofitApi.class);
+        Call<ListTvShow> call = api.getAllTvShow();
 
-        call.enqueue(new Callback<GetTvShow>() {
+        call.enqueue(new Callback<ListTvShow>() {
             @Override
-            public void onResponse(Call<GetTvShow> call, Response<GetTvShow> response) {
+            public void onResponse(Call<ListTvShow> call, Response<ListTvShow> response) {
                 assert response.body() != null;
                 tvShowList.setValue(response.body().getListTvShow());
             }
 
             @Override
-            public void onFailure(Call<GetTvShow> call, Throwable t) {
+            public void onFailure(Call<ListTvShow> call, Throwable t) {
                 Log.d("onFailure: ", Objects.requireNonNull(t.getMessage()));
             }
         });

@@ -3,9 +3,8 @@ package com.dendickys.moviecatalogueapi.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class GetTvShow {
+public class ListTvShow {
     @SerializedName("results")
     private ArrayList<TvShow> listTvShow;
 

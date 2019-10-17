@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.dendickys.moviecatalogueapi.R;
 import com.dendickys.moviecatalogueapi.model.TvShow;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder> {
@@ -24,9 +22,6 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
 
     public TvShowAdapter(List<TvShow> listTvShow) {
         this.listTvShow = listTvShow;
-        /*listTvShow.clear();
-        listTvShow.addAll(items);
-        notifyDataSetChanged();*/
     }
 
     @NonNull
@@ -54,11 +49,11 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
         return listTvShow.size();
     }
 
-    public class TvShowViewHolder extends RecyclerView.ViewHolder {
+    class TvShowViewHolder extends RecyclerView.ViewHolder {
         private ImageView posterTvShow;
         private TextView titleTvShow, releaseDateTvShow, overviewTvShow;
 
-        public TvShowViewHolder(@NonNull View itemView) {
+        TvShowViewHolder(@NonNull View itemView) {
             super(itemView);
 
             posterTvShow = itemView.findViewById(R.id.img_poster_tvshow);

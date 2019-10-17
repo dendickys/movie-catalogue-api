@@ -7,53 +7,67 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.dendickys.moviecatalogueapi.model.Movies;
 import com.dendickys.moviecatalogueapi.viewmodels.MoviesViewModel;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 
 public class DetailMoviesActivity extends AppCompatActivity {
 
+    private ImageView mPoster;
+    private TextView mReleaseDate, mVoteAverage, mOverview;
     private ProgressBar progressBar;
-    private MoviesViewModel moviesViewModel;
-    public static final String EXTRA_MOVIE = "extra_movie";
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    public static final String MOVIE_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movies);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.white));
+
+        mPoster = findViewById(R.id.img_poster_movie);
+        mReleaseDate = findViewById(R.id.tv_release_date_movie);
+        mVoteAverage = findViewById(R.id.tv_vote_average_movie);
+        mOverview = findViewById(R.id.tv_overview_movie);
         progressBar = findViewById(R.id.progressBar_detail_movie);
 
-        /*moviesViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
-        moviesViewModel.setMovies();
+        MoviesViewModel detailMovieViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
         showLoading(true);
 
-        moviesViewModel.getMovies().observe(this, new Observer<ArrayList<Movies>>() {
+        detailMovieViewModel.getAllMovies().observe(this, new Observer<ArrayList<Movies>>() {
             @Override
             public void onChanged(ArrayList<Movies> movies) {
                 if (movies != null) {
-                    movies = getIntent().getParcelableExtra(EXTRA_MOVIE);
-
-                    if (getSupportActionBar() != null) {
-                        assert movies != null;
-                        //getSupportActionBar().setTitle(movies.getTitle());
-                    }
-
-                    ImageView imgPoster = findViewById(R.id.img_poster_movie);
-                    TextView tvOverview = findViewById(R.id.tv_overview_movie);
-
-                    assert movies != null;
-                    //imgPoster.setImageResource(Integer.valueOf(movies.getPoster_path()));
-                    //tvOverview.setText(movies.getOverview());
-
+                    setDetailMovie();
                     showLoading(false);
                 }
             }
-        });*/
+        });
+    }
+
+    private void setDetailMovie() {
+        Movies movie = getIntent().getParcelableExtra(MOVIE_ID);
+        assert movie != null;
+        collapsingToolbarLayout.setTitle(movie.getTitle());
+        Glide.with(getApplicationContext())
+                .load("https://image.tmdb.org/t/p/original/" + movie.getPoster_path())
+                .into(mPoster);
+        mReleaseDate.setText(movie.getRelease_date());
+        mVoteAverage.setText(movie.getVote_average());
+        mOverview.setText(movie.getOverview());
     }
 
     private void showLoading(Boolean state) {

@@ -6,9 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.dendickys.moviecatalogueapi.interfaces.RetrofitServices;
-import com.dendickys.moviecatalogueapi.model.GetMovies;
-import com.dendickys.moviecatalogueapi.model.GetTvShow;
+import com.dendickys.moviecatalogueapi.interfaces.RetrofitApi;
+import com.dendickys.moviecatalogueapi.model.ListMovies;
 import com.dendickys.moviecatalogueapi.model.Movies;
 
 import java.util.ArrayList;
@@ -33,22 +32,22 @@ public class MoviesViewModel extends ViewModel {
 
     private void loadMovies() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitServices.BASE_URL)
+                .baseUrl(RetrofitApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        RetrofitServices api = retrofit.create(RetrofitServices.class);
-        Call<GetMovies> call = api.getAllMovies();
+        RetrofitApi api = retrofit.create(RetrofitApi.class);
+        Call<ListMovies> call = api.getAllMovies();
 
-        call.enqueue(new Callback<GetMovies>() {
+        call.enqueue(new Callback<ListMovies>() {
             @Override
-            public void onResponse(Call<GetMovies> call, Response<GetMovies> response) {
+            public void onResponse(Call<ListMovies> call, Response<ListMovies> response) {
                 assert response.body() != null;
                 moviesList.setValue(response.body().getListMovies());
             }
 
             @Override
-            public void onFailure(Call<GetMovies> call, Throwable t) {
+            public void onFailure(Call<ListMovies> call, Throwable t) {
                 Log.d("onFailure: ", Objects.requireNonNull(t.getMessage()));
             }
         });

@@ -7,29 +7,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class TvShow implements Parcelable {
     @SerializedName("id")
-    private int id;
+    private String id;
     @SerializedName("poster_path")
     private String poster_path;
     @SerializedName("name")
     private String title;
     @SerializedName("first_air_date")
     private String release_date;
+    @SerializedName("last_air_date")
+    private String last_air_date;
+    @SerializedName("vote_average")
+    private String vote_average;
     @SerializedName("overview")
     private String overview;
 
-    public TvShow(int id, String poster_path, String title, String release_date, String overview) {
-        this.id = id;
-        this.poster_path = poster_path;
-        this.title = title;
-        this.release_date = release_date;
-        this.overview = overview;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,6 +53,22 @@ public class TvShow implements Parcelable {
         this.release_date = release_date;
     }
 
+    public String getLast_air_date() {
+        return last_air_date;
+    }
+
+    public void setLast_air_date(String last_air_date) {
+        this.last_air_date = last_air_date;
+    }
+
+    public String getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
+    }
+
     public String getOverview() {
         return overview;
     }
@@ -72,10 +84,12 @@ public class TvShow implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.poster_path);
         dest.writeString(this.title);
         dest.writeString(this.release_date);
+        dest.writeString(this.last_air_date);
+        dest.writeString(this.vote_average);
         dest.writeString(this.overview);
     }
 
@@ -83,14 +97,16 @@ public class TvShow implements Parcelable {
     }
 
     protected TvShow(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readString();
         this.poster_path = in.readString();
         this.title = in.readString();
         this.release_date = in.readString();
+        this.last_air_date = in.readString();
+        this.vote_average = in.readString();
         this.overview = in.readString();
     }
 
-    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
+    public static final Parcelable.Creator<TvShow> CREATOR = new Parcelable.Creator<TvShow>() {
         @Override
         public TvShow createFromParcel(Parcel source) {
             return new TvShow(source);
