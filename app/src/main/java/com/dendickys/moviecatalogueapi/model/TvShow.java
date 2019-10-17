@@ -14,8 +14,6 @@ public class TvShow implements Parcelable {
     private String title;
     @SerializedName("first_air_date")
     private String release_date;
-    @SerializedName("last_air_date")
-    private String last_air_date;
     @SerializedName("vote_average")
     private String vote_average;
     @SerializedName("overview")
@@ -53,14 +51,6 @@ public class TvShow implements Parcelable {
         this.release_date = release_date;
     }
 
-    public String getLast_air_date() {
-        return last_air_date;
-    }
-
-    public void setLast_air_date(String last_air_date) {
-        this.last_air_date = last_air_date;
-    }
-
     public String getVote_average() {
         return vote_average;
     }
@@ -88,7 +78,6 @@ public class TvShow implements Parcelable {
         dest.writeString(this.poster_path);
         dest.writeString(this.title);
         dest.writeString(this.release_date);
-        dest.writeString(this.last_air_date);
         dest.writeString(this.vote_average);
         dest.writeString(this.overview);
     }
@@ -101,12 +90,11 @@ public class TvShow implements Parcelable {
         this.poster_path = in.readString();
         this.title = in.readString();
         this.release_date = in.readString();
-        this.last_air_date = in.readString();
         this.vote_average = in.readString();
         this.overview = in.readString();
     }
 
-    public static final Parcelable.Creator<TvShow> CREATOR = new Parcelable.Creator<TvShow>() {
+    public static final Creator<TvShow> CREATOR = new Creator<TvShow>() {
         @Override
         public TvShow createFromParcel(Parcel source) {
             return new TvShow(source);

@@ -7,11 +7,13 @@
     <string name="movie_name">Judul Film</string>
     <string name="tvshow_name">Judul Tv Show</string>
     <string name="_year">Tahun</string>
+    <string name="_last_air_date">Last Air Date</string>
     <string name="_vote_average">Vote Average</string>
     <string name="_overview">Overview</string>
     <string name="poster_movies">Poster Movies</string>
     <string name="poster_tv_show">Poster Tv Show</string>
     <string name="release_date">Release date:</string>
+    <string name="last_air_date">Last air date:</string>
     <string name="genres">Genres:</string>
     <string name="overview">Overview</string>
     <string name="setting_language">Setting Language</string>
