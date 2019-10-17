@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Katalog Film API</string>
+    <string name="tab_text_1">Film</string>
+    <string name="tab_text_2">Serial Tv</string>
+    <string name="movies">Film</string>
+    <string name="tv_show">Serial Tv</string>
+    <string name="movie_name">Movie Title</string>
+    <string name="tvshow_name">Tv Show Title</string>
+    <string name="_year">Tahun</string>
+    <string name="_vote_average">Suara Rata-rata</string>
+    <string name="_overview">Deskripsi</string>
+    <string name="poster_movies">Poster Film</string>
+    <string name="poster_tv_show">Poster Serial Tv</string>
+    <string name="release_date">Tanggal rilis:</string>
+    <string name="overview">Deskripsi</string>
+    <string name="setting_language">Pengaturan Bahasa</string>
+</resources>

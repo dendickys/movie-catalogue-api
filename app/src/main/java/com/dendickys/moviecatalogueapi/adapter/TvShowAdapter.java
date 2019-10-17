@@ -17,7 +17,6 @@ import com.dendickys.moviecatalogueapi.R;
 import com.dendickys.moviecatalogueapi.model.TvShow;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder> {
 

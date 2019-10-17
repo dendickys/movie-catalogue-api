@@ -63,7 +63,7 @@ public class DetailMoviesActivity extends AppCompatActivity {
         assert movie != null;
         collapsingToolbarLayout.setTitle(movie.getTitle());
         Glide.with(getApplicationContext())
-                .load("https://image.tmdb.org/t/p/original/" + movie.getPoster_path())
+                .load("https://image.tmdb.org/t/p/w500/" + movie.getPoster_path())
                 .into(mPoster);
         mReleaseDate.setText(movie.getRelease_date());
         mVoteAverage.setText(movie.getVote_average());

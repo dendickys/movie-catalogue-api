@@ -1,16 +1,16 @@
 package com.dendickys.moviecatalogueapi;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.dendickys.moviecatalogueapi.model.TvShow;
@@ -63,7 +63,7 @@ public class DetailTvShowActivity extends AppCompatActivity {
         assert tvShow != null;
         collapsingToolbarLayout.setTitle(tvShow.getTitle());
         Glide.with(getApplicationContext())
-                .load("https://image.tmdb.org/t/p/original/" + tvShow.getPoster_path())
+                .load("https://image.tmdb.org/t/p/w500/" + tvShow.getPoster_path())
                 .into(mPoster);
         mReleaseDate.setText(tvShow.getRelease_date());
         mVoteAverage.setText(tvShow.getVote_average());

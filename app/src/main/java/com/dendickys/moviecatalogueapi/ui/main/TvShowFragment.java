@@ -22,9 +22,6 @@ import com.dendickys.moviecatalogueapi.viewmodels.TvShowViewModel;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TvShowFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -32,14 +29,11 @@ public class TvShowFragment extends Fragment {
     private ProgressBar progressBar;
 
     public TvShowFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tv_show, container, false);
     }
 
