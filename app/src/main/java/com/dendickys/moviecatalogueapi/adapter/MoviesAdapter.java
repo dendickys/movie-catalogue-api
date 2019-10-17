@@ -18,6 +18,8 @@ import com.dendickys.moviecatalogueapi.model.Movies;
 
 import java.util.ArrayList;
 
+import static com.dendickys.moviecatalogueapi.interfaces.RetrofitApi.BASE_URL_POSTER;
+
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
 
     private ArrayList<Movies> listMovies;
@@ -68,7 +70,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
         void bind(Movies movieItems) {
             Glide.with(itemView.getContext())
-                    .load("https://image.tmdb.org/t/p/w185/" + movieItems.getPoster_path())
+                    .load(BASE_URL_POSTER + "w185/" + movieItems.getPoster_path())
                     .apply(new RequestOptions()).override(100, 150)
                     .into(posterMovie);
             titleMovie.setText(movieItems.getTitle());

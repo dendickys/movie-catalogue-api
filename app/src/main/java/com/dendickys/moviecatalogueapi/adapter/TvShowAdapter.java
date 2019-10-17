@@ -18,6 +18,8 @@ import com.dendickys.moviecatalogueapi.model.TvShow;
 
 import java.util.ArrayList;
 
+import static com.dendickys.moviecatalogueapi.interfaces.RetrofitApi.BASE_URL_POSTER;
+
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder> {
 
     private ArrayList<TvShow> listTvShow;
@@ -35,15 +37,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
 
     @Override
     public void onBindViewHolder(@NonNull TvShowViewHolder holder, int position) {
-        TvShow tvShow = listTvShow.get(position);
-
-        Glide.with(holder.itemView.getContext())
-                .load("https://image.tmdb.org/t/p/w185/" + tvShow.getPoster_path())
-                .apply(new RequestOptions()).override(100, 150)
-                .into(holder.posterTvShow);
-        holder.titleTvShow.setText(tvShow.getTitle());
-        holder.releaseDateTvShow.setText(tvShow.getRelease_date());
-        holder.overviewTvShow.setText(tvShow.getOverview());
+        holder.bind(listTvShow.get(position));
     }
 
     @Override
@@ -72,6 +66,16 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.TvShowView
                     itemView.getContext().startActivity(intent);
                 }
             });
+        }
+
+        void bind(TvShow tvShow) {
+            Glide.with(itemView.getContext())
+                    .load(BASE_URL_POSTER + "w185/" + tvShow.getPoster_path())
+                    .apply(new RequestOptions()).override(100, 150)
+                    .into(posterTvShow);
+            titleTvShow.setText(tvShow.getTitle());
+            releaseDateTvShow.setText(tvShow.getRelease_date());
+            overviewTvShow.setText(tvShow.getOverview());
         }
     }
 }

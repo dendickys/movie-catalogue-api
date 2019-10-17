@@ -41,9 +41,7 @@ public class MoviesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        progressBar = view.findViewById(R.id.progressBar_movies);
-
-        recyclerView = view.findViewById(R.id.rv_movies);
+        bindData(view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -61,6 +59,11 @@ public class MoviesFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void bindData(View view) {
+        progressBar = view.findViewById(R.id.progressBar_movies);
+        recyclerView = view.findViewById(R.id.rv_movies);
     }
 
     private void showLoading(Boolean state) {

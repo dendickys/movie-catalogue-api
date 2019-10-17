@@ -16,12 +16,14 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar mToolbar = findViewById(R.id.tb_main);
+        bindData();
         setSupportActionBar(mToolbar);
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+    }
+
+    private void bindData() {
+        mToolbar = findViewById(R.id.tb_main);
     }
 
     @Override

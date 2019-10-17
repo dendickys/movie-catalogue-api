@@ -41,10 +41,7 @@ public class TvShowFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        progressBar = view.findViewById(R.id.progressBar_tv_show);
-        showLoading(true);
-
-        recyclerView = view.findViewById(R.id.rv_tv_show);
+        bindData(view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -62,6 +59,11 @@ public class TvShowFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void bindData(View view) {
+        progressBar = view.findViewById(R.id.progressBar_tv_show);
+        recyclerView = view.findViewById(R.id.rv_tv_show);
     }
 
     private void showLoading(Boolean state) {

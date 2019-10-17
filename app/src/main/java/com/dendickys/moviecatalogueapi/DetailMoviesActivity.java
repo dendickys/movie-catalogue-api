@@ -19,8 +19,11 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
 
+import static com.dendickys.moviecatalogueapi.interfaces.RetrofitApi.BASE_URL_POSTER;
+
 public class DetailMoviesActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private ImageView mPoster;
     private TextView mReleaseDate, mVoteAverage, mOverview;
     private ProgressBar progressBar;
@@ -32,17 +35,13 @@ public class DetailMoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movies);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_movie);
+        bindData();
         setSupportActionBar(toolbar);
-        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_movie);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
         collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, android.R.color.white));
-
-        mPoster = findViewById(R.id.img_poster_movie);
-        mReleaseDate = findViewById(R.id.tv_release_date_movie);
-        mVoteAverage = findViewById(R.id.tv_vote_average_movie);
-        mOverview = findViewById(R.id.tv_overview_movie);
-        progressBar = findViewById(R.id.progressBar_detail_movie);
 
         MoviesViewModel detailMovieViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MoviesViewModel.class);
         showLoading(true);
@@ -58,12 +57,22 @@ public class DetailMoviesActivity extends AppCompatActivity {
         });
     }
 
+    private void bindData() {
+        toolbar = findViewById(R.id.toolbar_movie);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_movie);
+        mPoster = findViewById(R.id.img_poster_movie);
+        mReleaseDate = findViewById(R.id.tv_release_date_movie);
+        mVoteAverage = findViewById(R.id.tv_vote_average_movie);
+        mOverview = findViewById(R.id.tv_overview_movie);
+        progressBar = findViewById(R.id.progressBar_detail_movie);
+    }
+
     private void setDetailMovie() {
         Movies movie = getIntent().getParcelableExtra(MOVIE_ID);
         assert movie != null;
         collapsingToolbarLayout.setTitle(movie.getTitle());
         Glide.with(getApplicationContext())
-                .load("https://image.tmdb.org/t/p/w500/" + movie.getPoster_path())
+                .load(BASE_URL_POSTER + "w500/" + movie.getPoster_path())
                 .into(mPoster);
         mReleaseDate.setText(movie.getRelease_date());
         mVoteAverage.setText(movie.getVote_average());
@@ -76,5 +85,11 @@ public class DetailMoviesActivity extends AppCompatActivity {
         } else {
             progressBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

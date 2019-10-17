@@ -3,8 +3,6 @@
     <string name="app_name">Katalog Film API</string>
     <string name="tab_text_1">Film</string>
     <string name="tab_text_2">Serial Tv</string>
-    <string name="movies">Film</string>
-    <string name="tv_show">Serial Tv</string>
     <string name="movie_name">Movie Title</string>
     <string name="tvshow_name">Tv Show Title</string>
     <string name="_year">Tahun</string>
